@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import styles from './SearchBar.module.css';
 import toast from 'react-hot-toast';
 
-const SearchBar = ({ onSubmit }) => {
-  const [query, setQuery] = useState('');
+interface SearchBarProps {
+  onSubmit: (query: string) => void;
+}
 
-  const handleSubmit = e => {
+const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
+  const [query, setQuery] = useState<string>('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!query.trim()) {
@@ -26,7 +30,7 @@ const SearchBar = ({ onSubmit }) => {
           </button>
           <input
             type="text"
-            placeholder=""
+            placeholder="Search"
             value={query}
             onChange={e => setQuery(e.target.value)}
             className={styles.input}

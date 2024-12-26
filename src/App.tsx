@@ -9,14 +9,20 @@ import ImageModal from './components/ImageModal/ImageModal';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import styles from './App.module.css';
 
-const App = () => {
-  const [images, setImages] = useState([]);
-  const [query, setQuery] = useState('');
-  const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [totalPages, setTotalPages] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(null);
+interface Image {
+  id: string;
+  urls: { small: string; regular: string };
+  alt_description: string | null;
+}
+
+const App: React.FC = () => {
+  const [images, setImages] = useState<Image[]>([]);
+  const [query, setQuery] = useState<string>('');
+  const [page, setPage] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null);
 
   useEffect(() => {
     if (!query) return;
@@ -39,7 +45,7 @@ const App = () => {
     fetchAndSetImages();
   }, [query, page]);
 
-  const handleSearch = newQuery => {
+  const handleSearch = (newQuery: string) => {
     if (query === newQuery) return;
     setQuery(newQuery);
     setPage(1);
