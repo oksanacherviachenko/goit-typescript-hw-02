@@ -1,9 +1,6 @@
 import React from 'react';
 import styles from './ErrorMessage.module.css';
-
-interface ErrorMessageProps {
-  message: string;
-}
+import { ErrorMessageProps } from '../../types';
 
 const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => (
   <div className={styles.errorContainer}>
@@ -12,4 +9,5 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => (
 );
 
 export default ErrorMessage;
+
 

@@ -8,12 +8,7 @@ import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 import ImageModal from './components/ImageModal/ImageModal';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import styles from './App.module.css';
-
-interface Image {
-  id: string;
-  urls: { small: string; regular: string };
-  alt_description: string | null;
-}
+import { Image } from './types';
 
 const App: React.FC = () => {
   const [images, setImages] = useState<Image[]>([]);
@@ -81,6 +76,7 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 
 
 

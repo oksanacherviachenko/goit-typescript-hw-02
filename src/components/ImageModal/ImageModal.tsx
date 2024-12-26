@@ -1,12 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import styles from './ImageModal.module.css';
-
-interface ImageModalProps {
-  isOpen: boolean;
-  image: { urls: { regular: string }; alt_description: string | null };
-  onClose: () => void;
-}
+import { ImageModalProps } from '../../types';
 
 Modal.setAppElement('#root');
 
@@ -21,7 +16,7 @@ const ImageModal: React.FC<ImageModalProps> = ({ isOpen, image, onClose }) => {
       overlayClassName={styles.overlay}
     >
       <img
-        src={image.urls.regular}
+        src={image.urls.regular || image.urls.small}
         alt={image.alt_description || 'Large image'}
         className={styles.image}
       />
@@ -33,6 +28,7 @@ const ImageModal: React.FC<ImageModalProps> = ({ isOpen, image, onClose }) => {
 };
 
 export default ImageModal;
+
 
 
 
